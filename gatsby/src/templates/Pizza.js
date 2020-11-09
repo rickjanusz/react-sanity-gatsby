@@ -1,11 +1,18 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import styled from 'styled-components';
 
+const PizzaGrid = styled.div`
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr))
+`;
 
 export default function SinglePizzaPage({ data: {pizza}}) {
     return (
         <>
+        <PizzaGrid>
          <Img fluid={pizza.image.asset.fluid} />
         <div>
           <h2 className="mark">{pizza.name}</h2>
@@ -15,6 +22,7 @@ export default function SinglePizzaPage({ data: {pizza}}) {
             ))}
           </ul>
         </div>
+        </PizzaGrid>
         </>
   );
 }
