@@ -10,8 +10,6 @@ grid-gap: 2rem;
 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
 
-
-
 const SingleSlicemaster = styled.div`
 a {
     text-decoration: none;
@@ -28,13 +26,23 @@ h2 {
     z-index: 2;
 
 }
+.description {
+    background: var(--yellow);
+    padding: 1rem;
+    margin: 2rem;
+    margin-top: -6rem;
+    position: relative;
+    z-index: 2;
+    transform: rotate(1deg);
+}
 `;
 
 export default function SlicemastersPage({ data }) { 
     const slicemasters = data.slicemasters.nodes;
-    console.log(slicemasters); 
+    //console.log(slicemasters); 
     return (
         <>
+<p>{process.env.GATSBY_PAGE_SIZE}</p>
             <SlicemasterGrid>
                 {slicemasters.map((person) => (
                     <SingleSlicemaster>
@@ -56,8 +64,8 @@ export default function SlicemastersPage({ data }) {
 }
 
 export const query = graphql`
-    query {
-        slicemasters: allSanityPerson {
+    query($skip: Int = 0, $pageSize: Int = 2) {
+        slicemasters: allSanityPerson(limit: $pageSize, skip: $skip) {
           nodes {
             id
             name
