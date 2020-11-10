@@ -34,6 +34,7 @@ h2 {
     margin-top: -6rem;
     position: relative;
     z-index: 2;
+
     transform: rotate(1deg);
 }
 `;
@@ -41,11 +42,11 @@ h2 {
 export default function SlicemastersPage({ data, pageContext }) { 
     const slicemasters = data.slicemasters.nodes;
     //console.log(slicemasters); 
-    //console.log(data.slicemasters.totalCount);
+     //console.log(data.slicemasters.totalCount);
     return (
         <>
             <Pagination 
-                pageSize={process.env.GATSBY_PAGE_SIZE} 
+                pageSize={process.env.GATSBY_PAGE_SIZE}
                 totalCount={data.slicemasters.totalCount} 
                 currentPage={pageContext.currentPage || 1} 
                 skip={pageContext.skip} 

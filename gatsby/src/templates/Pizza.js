@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
+
 const PizzaGrid = styled.div`
     display: grid;
     grid-gap: 2rem;

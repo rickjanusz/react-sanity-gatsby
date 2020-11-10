@@ -5,11 +5,13 @@ dotenv.config ({ path: '.env' });
 
 export default {
     siteMetadata: {
-        title: `Slicks Slices`,
+        title: `Slick&quot;s Slices`,
         siteUrl: `https:gatsby.pizza.com`,
-        description: `The best pizza place ever!`
+        description: `The best pizza place ever!`,
+        twitter: `@slicksslices`,
     },
     plugins: [
+        'gatsby-plugin-react-helmet',
         'gatsby-plugin-styled-components',
         {
             resolve: 'gatsby-source-sanity',
