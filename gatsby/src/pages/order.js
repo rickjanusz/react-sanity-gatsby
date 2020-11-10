@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-export default function OrderPage() {   
-    return <>
-        <p>Hey: I'm the Order page</p>
+export default function OrderPage() {
+  return (
+    <>
+      <p>Hey: I'm the Order page</p>
     </>
+  )
 }
