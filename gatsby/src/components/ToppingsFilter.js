@@ -1,6 +1,6 @@
-import { graphql, Link, useStaticQuery } from 'gatsby'
-import React from 'react'
-import styled from 'styled-components'
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import React from 'react';
+import styled from 'styled-components';
 
 const ToppingsStyles = styled.div`
   display: flex;
@@ -23,37 +23,39 @@ const ToppingsStyles = styled.div`
       background: var(--yellow);
     }
   }
-`
+`;
 
 function countPizzasInToppings(pizzas) {
-  //console.log(pizzas)
+  // console.log(pizzas)
   const counts = pizzas
     .map((pizza) => pizza.toppings)
     .flat()
     .reduce((acc, topping) => {
       // 1. Check if this is an existing topping
-      const existingTopping = acc[topping.id]
+      const existingTopping = acc[topping.id];
       if (existingTopping) {
         // 2. if it is, increment by 1
-        existingTopping.count += 1
+        existingTopping.count += 1;
       } else {
         // 3. else create a new entry in out acc and set it to 1
         acc[topping.id] = {
           id: topping.id,
           name: topping.name,
           count: 1,
-        }
+        };
       }
-      return acc
-    }, {})
+      return acc;
+    }, {});
   // 4.  sort them based on their count
-  const sortedToppings = Object.values(counts).sort((b, a) => a.count - b.count)
-  return sortedToppings
+  const sortedToppings = Object.values(counts).sort(
+    (b, a) => a.count - b.count
+  );
+  return sortedToppings;
 }
 
 export default function ToppingsFilter({ activeTopping }) {
   // 1. Get a list of all the toppings
-  // 2. Get a list of all the Pizzad with their toppings
+  // 2. Get a list of all the Pizza with their toppings
   const { toppings, pizzas } = useStaticQuery(graphql`
     query {
       toppings: allSanityTopping {
@@ -72,11 +74,11 @@ export default function ToppingsFilter({ activeTopping }) {
         }
       }
     }
-  `)
-  console.clear()
-  //console.log({toppings, pizzas});
+  `);
+  console.clear();
+  // console.log({toppings, pizzas});
   // 3. Count how many pizzas are in each topping
-  const toppingsWithCounts = countPizzasInToppings(pizzas.nodes)
+  const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
 
   // 4. Loop over the list of toppings and display the topping and the count of pizzas in that topping
   // 5. Link it up
@@ -98,5 +100,5 @@ export default function ToppingsFilter({ activeTopping }) {
         </Link>
       ))}
     </ToppingsStyles>
-  )
+  );
 }

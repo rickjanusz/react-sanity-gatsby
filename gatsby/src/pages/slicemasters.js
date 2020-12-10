@@ -1,14 +1,15 @@
-import React from 'react'
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
-import styled from 'styled-components'
-import Pagination from '../components/Pagination'
+import React from 'react';
+import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
+import styled from 'styled-components';
+import Pagination from '../components/Pagination';
+import SEO from '../components/SEO';
 
 const SlicemasterGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(410px, 1fr));
-`
+`;
 
 const SingleSlicemaster = styled.div`
   a {
@@ -35,14 +36,15 @@ const SingleSlicemaster = styled.div`
 
     transform: rotate(1deg);
   }
-`
+`;
 
 export default function SlicemastersPage({ data, pageContext }) {
-  const slicemasters = data.slicemasters.nodes
-  //console.log(slicemasters);
-  //console.log(data.slicemasters.totalCount);
+  const slicemasters = data.slicemasters.nodes;
+  // console.log(slicemasters);
+  // console.log(data.slicemasters.totalCount);
   return (
     <>
+      <SEO title={`Slicemasters - Page ${pageContext.currentPage || 1}`} />
       <Pagination
         pageSize={process.env.GATSBY_PAGE_SIZE}
         totalCount={data.slicemasters.totalCount}
@@ -50,9 +52,10 @@ export default function SlicemastersPage({ data, pageContext }) {
         skip={pageContext.skip}
         base="/slicemasters"
       />
+
       <SlicemasterGrid>
         {slicemasters.map((person) => (
-          <SingleSlicemaster>
+          <SingleSlicemaster key={person.name}>
             <Link to={`/slicemasters/${person.slug.current}`}>
               <h2>
                 <span className="mark">{person.name}</span>
@@ -65,7 +68,7 @@ export default function SlicemastersPage({ data, pageContext }) {
         ))}
       </SlicemasterGrid>
     </>
-  )
+  );
 }
 
 export const query = graphql`
@@ -89,4 +92,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

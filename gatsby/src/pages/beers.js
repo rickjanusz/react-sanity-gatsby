@@ -1,11 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 const BeerGridStyles = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-`
+`;
 
 const SingleBeerStyle = styled.div`
   border: 1px solid var(--grey);
@@ -21,18 +22,19 @@ const SingleBeerStyle = styled.div`
     font-size: 10px;
     color: #666;
   }
-`
+`;
 
 export default function BeersPage({ data }) {
-  console.log(data)
+  console.log(data);
   return (
     <>
+      <SEO title="Beers" />
       <h2 className="center">
         We have {data.beers.nodes.length} beers available. Dine in only!
       </h2>
       <BeerGridStyles>
         {data.beers.nodes.map((beer) => {
-          const rating = Math.round(beer.rating.average)
+          const rating = Math.round(beer.rating.average);
           return (
             <SingleBeerStyle key={beer.id}>
               <img src={beer.image} alt={beer.name} />
@@ -46,11 +48,11 @@ export default function BeersPage({ data }) {
                 <span>({beer.rating.reviews})</span>
               </p>
             </SingleBeerStyle>
-          )
+          );
         })}
       </BeerGridStyles>
     </>
-  )
+  );
 }
 
 export const query = graphql`
@@ -68,4 +70,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

@@ -1,6 +1,6 @@
-import { Link } from 'gatsby'
-import React from 'react'
-import styled from 'styled-components'
+import { Link } from 'gatsby';
+import React from 'react';
+import styled from 'styled-components';
 
 const PaginationStyles = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const PaginationStyles = styled.div`
       color: var(--grey);
     }
   }
-`
+`;
 
 export default function Pagination({
   pageSize,
@@ -34,11 +34,11 @@ export default function Pagination({
   skip,
   base,
 }) {
-  const totalPages = Math.ceil(totalCount / pageSize)
-  const prevPage = currentPage - 1
-  const nextPage = currentPage + 1
-  const hasNextPage = nextPage <= totalPages
-  const hasPrevPage = prevPage >= 1
+  const totalPages = Math.ceil(totalCount / pageSize);
+  const prevPage = currentPage - 1;
+  const nextPage = currentPage + 1;
+  const hasNextPage = nextPage <= totalPages;
+  const hasPrevPage = prevPage >= 1;
   return (
     <PaginationStyles>
       <Link disabled={!hasPrevPage} to={`${base}/${prevPage}`}>
@@ -48,6 +48,7 @@ export default function Pagination({
         <Link
           className={currentPage === 1 && i === 0 ? 'current' : ''}
           to={`${base}/${i > 0 ? i + 1 : ''}`}
+          key={i}
         >
           {i + 1}
         </Link>
@@ -56,5 +57,5 @@ export default function Pagination({
         Next →{' '}
       </Link>
     </PaginationStyles>
-  )
+  );
 }

@@ -1,17 +1,19 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
-import styled from 'styled-components'
+import React from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 const PizzaGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-`
+`;
 
 export default function SinglePizzaPage({ data: { pizza } }) {
   return (
     <>
+      <SEO title={pizza.name} image={pizza.image?.asset?.fluid?.src} />
       <PizzaGrid>
         <Img fluid={pizza.image.asset.fluid} />
         <div>
@@ -24,7 +26,7 @@ export default function SinglePizzaPage({ data: { pizza } }) {
         </div>
       </PizzaGrid>
     </>
-  )
+  );
 }
 
 export const query = graphql`
@@ -46,4 +48,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
